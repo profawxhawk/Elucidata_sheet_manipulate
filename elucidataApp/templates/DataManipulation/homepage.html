@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>
+            DataManipulation app for elucidata assignment
+        </title>
+    </head>
+    <body>
+        <h1 align="center">Welcome to the Data Manipulation app</h1>
+            
+            <div style="text-align:center;margin-top:5%;">
+                {%if error%}
+                    <h3 style="color:red;">An error occured.Please upload again</h3>
+                {%endif%}
+                {%if success%}
+                    <h3 style="color:green;">File succesfully uploaded</h3>
+                {%endif%}
+            </div>
+            <div class="container" style="text-align:center;">
+                <form action="{% url "upload_file" %}" method="POST"  enctype="multipart/form-data" style="display: inline-block;text-align:left;margin-top:5%;">
+                {% csrf_token %}
+                {{form.as_p}}
+                <button type="submit">Submit</button>
+            </div>
+    </body>
+</html>
+
