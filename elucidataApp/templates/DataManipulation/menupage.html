@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <title>
+            DataManipulation app for elucidata assignment
+        </title>
+    </head>
+    <body>
+        <h1 align="center">Welcome to the Data Manipulation app</h1><br>
+        <h1 align="center">Menu</h1>
+            <div style="text-align:center;margin-top:5%;">
+                {%if success%}
+                    <h3 style="color:green;">File succesfully uploaded.Choose an option to proceed.</h3>
+                {%endif%}
+                {%if name%}
+                    <h3>File name :{{name}}</h3>
+                {%endif%}
+                <br>
+                <br>
+                <h3>1) Task 1   <button><a href="{% url 'Task_1'%}">Download</a></button>  </h3>
+                <h3>2) Task 2   <button><a>Download</a></button>  </h3>
+                <h3>3) Task 3   <button><a>Download</a></button>  </h3>
+            </div>
+    </body>
+</html>
+
