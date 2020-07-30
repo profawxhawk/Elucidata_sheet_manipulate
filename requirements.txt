@@ -52,6 +52,5 @@ simplejson==3.16.0
 sklearn==0.0
 soupsieve==2.0
 sqlparse==0.3.1
-ssh-import-id==5.7
 systemd-python==234
 xlrd==1.2.0
