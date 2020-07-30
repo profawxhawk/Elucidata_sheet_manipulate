@@ -29,7 +29,7 @@ def upload_file(request):
 def Task_1(request):
     if request.session['path']:
         df=pd.read_excel(request.session['path'][1:])
-        
+
         df_PC=df[df['Accepted Compound ID'].str.contains("PC",na=False)]
         df_PC=df_PC[~df_PC["Accepted Compound ID"].str.contains("LPC",na=False)]
         df_PC=df_PC[~df_PC["Accepted Compound ID"].str.contains("plasmalogen",na=False)]
@@ -46,3 +46,42 @@ def Task_1(request):
         response = HttpResponse(output.getvalue(), content_type='application/zip')
         response['Content-Disposition'] = 'attachment; filename="Task1.zip"'
         return response
+    else:
+        return redirect(reverse('home'))
+
+def Task_2(request):
+    
+    if request.session['path']:
+        df=pd.read_excel(request.session['path'][1:])
+        df['Retention Time Roundoff (in mins)']=df['Retention time (min)'].round().astype(int)
+
+        temp_columns=df.columns.tolist()
+        temp_columns.insert(3,temp_columns[-1])
+        temp_columns=temp_columns[:len(temp_columns)-1]
+        df=df[temp_columns]
+
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename=Task2.csv'
+
+        df.to_csv(path_or_buf=response,index=False)
+        return response
+    else:
+        return redirect(reverse('home'))
+
+def Task_3(request):
+    if request.session['path']:
+        df=pd.read_excel(request.session['path'][1:])
+        df['Retention Time Roundoff (in mins)']=df['Retention time (min)'].round().astype(int)
+
+        temp_columns=df.columns[3:len(df.columns)].tolist()
+        temp_columns.insert(0,temp_columns[-1])
+        temp_columns=temp_columns[:len(temp_columns)-1]
+        df=df.groupby(['Retention Time Roundoff (in mins)'])[temp_columns].mean()
+
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename=Task3.csv'
+
+        df.to_csv(path_or_buf=response,index=False)
+        return response
+    else:
+        return redirect(reverse('home'))
