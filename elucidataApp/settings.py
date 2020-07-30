@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'hkp1od+hbaqcdk9ii0&iw=w@(s=we!y5+1t0z5sq_+&y5#puku'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['agile-falls-56949.herokuapp.com']
 
